@@ -19,7 +19,7 @@ mongoose.connect(
   )
 
 app.get("/",(req,res) =>{
-  res.send("Esta es la API")}
+  res.send("Esta es la API prueba")}
 )
 
 app.listen(port, console.log("Servidor Backend escuchando en el puerto ", port))
