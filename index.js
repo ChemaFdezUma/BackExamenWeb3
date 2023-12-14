@@ -17,7 +17,7 @@ const logConexionesRoutes = require("./routes/logConexionsRoutes.js");
 app.use("/paradas", paradasRoutes);
 app.use("/logConexiones", logConexionesRoutes);
 mongoose.connect(
-  process.env.ATLAS_URI).then(() => {
+  "mongodb+srv://grupoWeb:grupoWeb@cluster0.1cxeafx.mongodb.net/examenWeb").then(() => {
     console.log("Hemos conectado con mongoDB, BOMBA");
   }).catch((error) => {
     console.error(error);
