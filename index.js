@@ -12,7 +12,7 @@ const pardasRoutes = require("./routes/paradasRoutes");
 app.use("/logConexiones", logConexionesRoutes);
 app.use("/paradas", pardasRoutes);
 mongoose.connect(
-  "mongodb+srv://ei:ei@cluster0.1acabfy.mongodb.net/kalendas").then(()=>
+  "mongodb+srv://grupoWeb:grupoWeb@cluster0.1cxeafx.mongodb.net/examenWeb").then(()=>
     console.log("Hemos conectado con mongoDB")
   ).catch((error)=>
     console.error(error)
