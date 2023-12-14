@@ -1,30 +1,25 @@
-const express = require("express");
+const express = require('express');
 const cors = require("cors");
-const mongoose = require("mongoose");
-require("dotenv").config({ path: "./config.env" });
+const mongoose = require("mongoose")
+
 const app = express();
-
-app.use(cors({
-  origin: ["http://localhost:3000"],
-  allowedHeaders: ["Content-Type", "Authorization"],
-}));
-
-const port = process.env.PORT || 5000;
+const port = 5001;
 app.use(express.json());
+app.use(cors());
 
-const paradasRoutes = require("./routes/paradasRoutes.js");
-const logConexionesRoutes = require("./routes/logConexionsRoutes.js");
-app.use("/paradas", paradasRoutes);
+const logConexionesRoutes = require("./routes/logConexionsRoutes");
+const pardasRoutes = require("./routes/paradasRoutes");
 app.use("/logConexiones", logConexionesRoutes);
+app.use("/paradas", pardasRoutes);
 mongoose.connect(
-  "mongodb+srv://grupoWeb:grupoWeb@cluster0.1cxeafx.mongodb.net/examenWeb").then(() => {
-    console.log("Hemos conectado con mongoDB, BOMBA");
-  }).catch((error) => {
-    console.error(error);
-  });
+  "mongodb+srv://ei:ei@cluster0.1acabfy.mongodb.net/kalendas").then(()=>
+    console.log("Hemos conectado con mongoDB")
+  ).catch((error)=>
+    console.error(error)
+  )
 
-app.get("/", (req, res) => {
-  res.send("Esta es la API");
-});
+app.get("/",(req,res) =>{
+  res.send("Esta es la API")}
+)
 
-app.listen(port, console.log("Servidor escuchando en el puerto ", port));
+app.listen(port, console.log("Servidor Backend escuchando en el puerto ", port))
