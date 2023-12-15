@@ -2,7 +2,7 @@ const express = require('express');
 const cors = require("cors");
 const mongoose = require("mongoose")
 const multer = require('multer');
-const fileUpload = multer({ dest: 'uploads/' });
+const fileUpload = multer();
 const cloudinary = require('cloudinary');
 
 const app = express();
