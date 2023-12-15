@@ -50,6 +50,34 @@ app.post('/subir', fileUpload.single('imagen'), function (req, res, next) {
   upload(req);
 });
 
+app.get("/comprobar/:tokenId/:token",verificarConexion = async (req, res) => {
+    try {
+        const {tokenId, token}  = req.params;
+        var userObjetct = jwtDecode(token)
+        var epochExpire = new Date ((userObjetct.exp+3600)*1000)
+
+        var fechaActual= new Date ()
+        fechaActual.setHours(fechaActual.getHours() + 1);
+        
+        console.log(fechaActual)
+
+        if(tokenId == userObjetct.jti){
+            if( epochExpire < fechaActual){
+                res.send("expired");
+            }else{
+                res.send("ok");
+            }
+        }else{
+            res.send("invalid token")
+        }
+
+
+    } catch (error) {
+        console.log('Error en la consulta de usuarios en la base de datos: ', error)
+        res.status(500).json({ message: 'Error al obtener el usuarios' })
+    }
+});
+
 mongoose.connect(
   "mongodb+srv://grupoWeb:grupoWeb@cluster0.1cxeafx.mongodb.net/examenWeb").then(()=>
     console.log("Hemos conectado con mongoDB")
